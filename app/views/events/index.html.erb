@@ -1,0 +1,31 @@
+<h1>Anlässe - <%= render @verbindung %></h1>
+
+<div class="events">
+<% @events.each do |event| %>
+  <div class="event">
+    <div class="event_header">
+      <div class="event_title">
+        <%= event.title %>
+      </div>
+      <div class = "event_date">
+        <%= event.date %>
+      </div>
+    </div>
+    <div class="event_content">
+      <%= simple_format(event.content) %>
+    </div>
+    <div class="event_footer">
+      <%= link_to 'Show', verbindung_event_path(@verbindung, event) %>
+      <% if (current_user.root? || (current_user.admin? && current_user.verbindung = event.verbindung)) then %>
+          <%= link_to 'Edit', edit_verbindung_event_path(@verbindung, event) %>
+          <%= link_to 'Destroy', verbindung_event_path(@verbindung, event), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<br />
+<% if (current_user.root? || current_user.admin?) then %>
+    <%= link_to 'New Event', new_verbindung_event_path(@verbindung) %>
+<% end %>

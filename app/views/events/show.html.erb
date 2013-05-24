@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @event.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @event.content %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @event.date %>
+</p>
+
+<p>
+  <b>Verbindung:</b>
+  <%= render @event.verbindung %>
+</p>
+
+
+<%= link_to 'Edit', verbindung_event_path(@event) %> |
+<%= link_to 'Back', verbindung_event_path %>

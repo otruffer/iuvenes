@@ -1,0 +1,8 @@
+<span class="user">
+  <%= link_to(user.name, user) %>
+
+  <div class="detail_tooltip">
+    <%= user.name + (if verbindung.cerevis? then " v/o "+verbindung.ort+"" end) %><br />
+    Anzahl Mitglieder: <%= verbindung.users.count %>
+  </div>
+</span>
