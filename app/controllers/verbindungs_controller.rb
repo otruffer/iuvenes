@@ -1,7 +1,7 @@
 class VerbindungsController < ApplicationController
 
-  before_filter :authenticate_user!
-  before_filter :check_root
+  before_filter :authenticate_user!, :only => [:edit, :update, :destroy]
+  before_filter :check_root, :only => [:destroy]
 
   # GET /verbindungs
   # GET /verbindungs.json
@@ -39,6 +39,7 @@ class VerbindungsController < ApplicationController
   # GET /verbindungs/1/edit
   def edit
     @verbindung = Verbindung.find(params[:id])
+    if !access_to_edit(@verbindung) then return end
   end
 
   # POST /verbindungs
@@ -61,10 +62,14 @@ class VerbindungsController < ApplicationController
   # PUT /verbindungs/1.json
   def update
     @verbindung = Verbindung.find(params[:id])
+    if !access_to_edit(@verbindung) then
+      redirect_to root_path
+      return
+    end
 
     respond_to do |format|
       if @verbindung.update_attributes(params[:verbindung])
-        format.html { redirect_to @verbindung, notice: 'Verbindung was successfully updated.' }
+        format.html { redirect_to verbindung_path(@verbindung), notice: 'Verbindung was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -89,5 +94,13 @@ class VerbindungsController < ApplicationController
     if !current_user.root?
       redirect_to root_path
     end
+  end
+
+  def access_to_edit(verbindung)
+    if !(current_user.root? || (current_user.admin? && current_user.verbindung == verbindung))
+      redirect_to root_path
+      false
+    end
+    true
   end
 end

@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
   belongs_to :verbindung
 
   validates :email, :uniqueness => true
+  validates :verbindung_id, :presence => true
 end
