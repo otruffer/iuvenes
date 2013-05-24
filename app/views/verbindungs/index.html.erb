@@ -1,0 +1,25 @@
+<h1>Listing verbindungs</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Ort</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @verbindungs.each do |verbindung| %>
+  <tr>
+    <td><%= verbindung.name %></td>
+    <td><%= verbindung.ort %></td>
+    <td><%= link_to 'Show', verbindung %></td>
+    <td><%= link_to 'Edit', edit_verbindung_path(verbindung) %></td>
+    <td><%= link_to 'Destroy', verbindung, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Verbindung', new_verbindung_path %>

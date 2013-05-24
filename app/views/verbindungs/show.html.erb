@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @verbindung.name %>
+</p>
+
+<p>
+  <b>Ort:</b>
+  <%= @verbindung.ort %>
+</p>
+
+
+<%= link_to 'Edit', edit_verbindung_path(@verbindung) %> |
+<%= link_to 'Back', verbindungs_path %>

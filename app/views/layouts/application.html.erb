@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Iuvenes</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<h1>IUVENES! <%= if user_signed_in? then " - " + current_user.verbindung.name end %></h1>
+<div class="navigation_bar">
+  <% if user_signed_in? then %>
+      <%= if current_user.root? then link_to "Verbindungen", verbindungs_path end%>
+      <%= link_to "Profil", current_user %>
+      <%= if current_user.admin? || current_user.root? then link_to "Benutzer", users_path end %>
+      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+      <% if !Rails.env.production? %>
+        <%= link_to((if current_user.admin? then "ADMIN" else "NOT ADMIN" end), toggle_admin_path) %>
+        <%= link_to((if current_user.root? then "ROOT" else "NOT ROOT" end), toggle_root_path) %>
+      <% end %>
+  <% end %>
+</div>
+<%= yield %>
+
+</body>
+</html>

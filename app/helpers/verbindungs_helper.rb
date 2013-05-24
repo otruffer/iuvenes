@@ -1,0 +1,2 @@
+module VerbindungsHelper
+end
