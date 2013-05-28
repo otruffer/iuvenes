@@ -13,3 +13,32 @@
 .verbindung {
     display: inline-block
 }
+
+.events {
+    background-color: #d3d3d3;
+    width: 800px;
+}
+
+.event_participants{
+    float: left;
+    padding-left: 5px;
+    font-size: 9px;
+}
+
+.event {
+    border: solid 1px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.event_title {
+    float: left;
+    font-weight: bold;
+}
+
+.event_date {
+    float: right;
+}
+.event_content{
+    clear: both;
+}

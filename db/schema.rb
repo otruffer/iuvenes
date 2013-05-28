@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(:version => 20130524150438) do
   end
 
   create_table "events_users", :force => true do |t|
-    t.integer "user"
-    t.integer "event"
+    t.integer "user_id"
+    t.integer "event_id"
   end
 
   create_table "users", :force => true do |t|

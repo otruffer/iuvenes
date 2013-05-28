@@ -1,0 +1,35 @@
+<div class="event">
+  <div class="event_header">
+    <div class="event_title">
+      <%= event.title %>
+    </div>
+    <div class = "event_participants">
+      Teilnehmer: <%= event.users.count %>
+      <% if event.users.count > 0 %>
+          <div class = "detail_tooltip">
+              <% event.users.each do |user| %>
+                  <%= user.email %> <br />
+              <% end %>
+          </div>
+      <% end %>
+    </div>
+    <div class = "event_date">
+      <%= event.date %>
+    </div>
+  </div>
+  <div class="event_content">
+    <%= simple_format(event.content) %>
+  </div>
+  <div class="event_footer">
+    <%= link_to 'Show', verbindung_event_path(@verbindung, event) %>
+    <% if (current_user.root? || (current_user.admin? && current_user.verbindung = event.verbindung)) then %>
+        <%= link_to 'Edit', edit_verbindung_event_path(@verbindung, event) %>
+        <%= link_to 'Destroy', verbindung_event_path(@verbindung, event), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% if event.users.include? current_user then %>
+            <%= link_to 'Nicht mehr teilnehmen', leave_verbindung_event_path(@verbindung, event) %>
+        <% else %>
+            <%= link_to 'Teilnehmen', join_verbindung_event_path(@verbindung, event) %>
+        <% end %>
+    <% end %>
+  </div>
+</div>

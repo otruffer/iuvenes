@@ -1,7 +1,12 @@
 Iuvenes::Application.routes.draw do
 
   resources :verbindungs do
-    resources :events
+    resources :events do
+      member do
+          get "join"
+          get "leave"
+        end
+    end
   end
   devise_for :users
 

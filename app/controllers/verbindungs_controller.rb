@@ -1,6 +1,6 @@
 class VerbindungsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:edit, :update, :destroy]
+  before_filter :authenticate_user!, :only => [:edit, :update, :destroy, :create]
   before_filter :check_root, :only => [:destroy]
 
   # GET /verbindungs

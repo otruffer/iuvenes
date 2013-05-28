@@ -7,7 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<h1>IUVENES! <%= if user_signed_in? then " - " + current_user.verbindung.name end %></h1>
+<h1>IUVENES!
+ <% if user_signed_in? then %>
+   -   <%= render current_user.verbindung %>
+ <% end %>
+</h1>
 <div class="navigation_bar">
   <% if user_signed_in? then %>
       <%= if current_user.root? then link_to "Verbindungen", verbindungs_path end%>
@@ -19,6 +23,9 @@
         <%= link_to((if current_user.admin? then "ADMIN" else "NOT ADMIN" end), toggle_admin_path) %>
         <%= link_to((if current_user.root? then "ROOT" else "NOT ROOT" end), toggle_root_path) %>
       <% end %>
+  <% else %>
+      <%= link_to "Einloggen", new_user_session_path %>
+      <%= link_to "Registrieren", new_user_registration_path %>
   <% end %>
 </div>
 <%= yield %>

@@ -10,6 +10,9 @@
   <%= @verbindung.ort %>
 </p>
 
+<p>
+  <%= link_to 'Anlässe', verbindung_events_path(@verbindung) %>
+</p>
 
 <%= link_to 'Edit', edit_verbindung_path(@verbindung) %> |
 <%= link_to 'Back', verbindungs_path %>
