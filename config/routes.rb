@@ -22,6 +22,7 @@ Iuvenes::Application.routes.draw do
   root :to => "home#index"
   match "/toggle_admin" => "home#toggle_admin"
   match "/toggle_root" => "home#toggle_root"
+  match "/events" => "route#anlaesse"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @user }
+      format.json { render json: @user.to_json }
     end
   end
 
@@ -98,14 +98,16 @@ class UsersController < ApplicationController
   def access_to_user(the_user)
     if !(current_user.root? || (current_user.admin? && current_user.verbindung == the_user.verbindung) || current_user == the_user)
       redirect_to root_path
-      false
+      return false
     end
+    return true
   end
 
   def check_root
     if !current_user.root?
       redirect_to root_path
-      false
+      return false
     end
+    return true
   end
 end
