@@ -10,3 +10,4 @@
 <% if (current_user.root? || current_user.admin?) then %>
     <%= link_to 'New Event', new_verbindung_event_path(@verbindung) %>
 <% end %>
+<%= link_to 'Archiv', events_archive_verbindung_path(@verbindung) %>

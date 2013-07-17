@@ -5,10 +5,17 @@ Iuvenes::Application.routes.draw do
       member do
           get "join"
           get "leave"
-        end
+      end
+    end
+    member do
+      get "events_archive"
+      get "members"
     end
   end
-  devise_for :users
+  devise_for :users,
+             :controllers  => {
+                 :sessions => 'devise_iuvenes',
+             }
 
   resources :users
 

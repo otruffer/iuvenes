@@ -21,14 +21,16 @@
     <%= simple_format(event.content) %>
   </div>
   <div class="event_footer">
-    <%= link_to 'Show', verbindung_event_path(@verbindung, event) %>
+    <%= link_to 'Anzeigen', verbindung_event_path(@verbindung, event) %>
     <% if (current_user.root? || (current_user.admin? && current_user.verbindung = event.verbindung)) then %>
-        <%= link_to 'Edit', edit_verbindung_event_path(@verbindung, event) %>
-        <%= link_to 'Destroy', verbindung_event_path(@verbindung, event), method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% if event.users.include? current_user then %>
-            <%= link_to 'Nicht mehr teilnehmen', leave_verbindung_event_path(@verbindung, event) %>
-        <% else %>
-            <%= link_to 'Teilnehmen', join_verbindung_event_path(@verbindung, event) %>
+        <%= link_to 'Bearbeiten', edit_verbindung_event_path(@verbindung, event) %>
+        <%= link_to 'Löschen', verbindung_event_path(@verbindung, event), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% if event.date >= Date.today then %>
+            <% if event.users.include? current_user then %>
+                <%= link_to 'Nicht mehr teilnehmen', leave_verbindung_event_path(@verbindung, event) %>
+            <% else %>
+                <%= link_to 'Teilnehmen', join_verbindung_event_path(@verbindung, event) %>
+            <% end %>
         <% end %>
     <% end %>
   </div>

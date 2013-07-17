@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @verbindung = Verbindung.find(params[:verbindung_id])
-    @events = Event.where(:verbindung_id => @verbindung.id)
+    @events = Event.where(:verbindung_id => @verbindung.id).where("date >= ?", Date.today).order("date")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -43,13 +43,14 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @verbindung = Verbindung.find(params[:verbindung_id])
     if !has_access_to_verbindung(@verbindung) then return end
-    end
+  end
 
   # POST /events
   # POST /events.json
   def create
     @event = Event.new(params[:event])
     @event.verbindung_id = current_user.verbindung_id
+    @verbindung = Verbindung.find(current_user.verbindung_id)
     if !has_access_to_verbindung(@verbindung) then return end
 
     respond_to do |format|
@@ -121,10 +122,11 @@ class EventsController < ApplicationController
   end
 
   def has_access_to_verbindung(verbindung)
-    if(current_user.verbindung != verbindung && current_user.admin?) then
+    if(current_user.verbindung == verbindung && current_user.admin? || current_user.root?) then
+      true
+    else
       redirect_to root_path
       return false
-    end
-    return true
+      end
   end
 end

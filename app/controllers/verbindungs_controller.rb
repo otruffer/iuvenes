@@ -58,6 +58,15 @@ class VerbindungsController < ApplicationController
     end
   end
 
+  def events_archive
+    @verbindung = Verbindung.find(params[:id])
+    @events = Event.where(:verbindung_id => @verbindung.id).where("date < ?", Date.today).order("date")
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @events }
+    end
+  end
+
   # PUT /verbindungs/1
   # PUT /verbindungs/1.json
   def update
@@ -75,6 +84,16 @@ class VerbindungsController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @verbindung.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def members
+    @verbindung = Verbindung.find(params[:id])
+    @members = @verbindung.users
+
+    respond_to do |format|
+      format.html # members.html.erb
+      format.json { render json: @members }
     end
   end
 
