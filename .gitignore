@@ -31,4 +31,7 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
+
+#session secret and db login.
 .env
+.db
