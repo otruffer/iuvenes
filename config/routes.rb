@@ -1,6 +1,13 @@
 Iuvenes::Application.routes.draw do
 
+
+
   resources :verbindungs do
+    resources :news do
+      member do
+        get "new"
+      end
+    end
     resources :events do
       member do
           get "join"
@@ -23,6 +30,7 @@ Iuvenes::Application.routes.draw do
   match "/toggle_admin" => "home#toggle_admin"
   match "/toggle_root" => "home#toggle_root"
   match "/events" => "route#anlaesse"
+  match "/profile" => "route#profile"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -11,4 +11,13 @@ class RouteController < ApplicationController
       format.json { redirect_to verbindung_events_path(@id, format: :json) }
     end
   end
+
+  # GET /profile
+  # GET /profile.json
+  def profile
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user.id) }
+      format.json { redirect_to user_path(current_user.id, format: :json) }
+    end
+  end
 end

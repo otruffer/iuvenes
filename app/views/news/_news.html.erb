@@ -1,0 +1,20 @@
+<div class="news">
+  <div class="news_header">
+    <div class="news_title">
+      <%= news.title %>
+    </div>
+    <div class = "news_date">
+      <%= news.date %>
+    </div>
+  </div>
+  <div class="news_content">
+    <%= simple_format(news.content) %>
+  </div>
+  <div class="news_footer">
+    <%= link_to 'Anzeigen', verbindung_news_path(@verbindung, news) %>
+    <% if (current_user.root? || (current_user.admin? && current_user.verbindung = event.verbindung)) then %>
+        <%= link_to 'Bearbeiten', edit_verbindung_news_path(@verbindung, news) %>
+        <%= link_to 'Löschen', verbindung_news_path(@verbindung, news), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </div>
+</div>

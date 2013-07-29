@@ -3,3 +3,13 @@
 
 de:
   hello: "Hallo Welt"
+  january: "Januar"
+  date:
+    formats:
+      default: ""
+      long: ""
+      short: ""
+    order:
+      - :day
+      - :month
+      - :year
