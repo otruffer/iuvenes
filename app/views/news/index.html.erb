@@ -1,0 +1,12 @@
+<h2>News - <%= render @verbindung %></h2>
+
+<div class="news">
+  <% @news.each do |the_news|%>
+      <%= render the_news %>
+  <% end %>
+</div>
+
+<br />
+<% if (current_user.root? || current_user.admin?) then %>
+    <%= link_to 'New Event', new_verbindung_news_path(@verbindung) %>
+<% end %>
