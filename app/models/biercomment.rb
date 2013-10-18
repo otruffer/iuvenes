@@ -1,0 +1,3 @@
+class Biercomment < PruegelEntity
+
+end

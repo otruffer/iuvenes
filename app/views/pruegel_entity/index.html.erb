@@ -1,0 +1,12 @@
+<h2>News - <%= render @verbindung %></h2>
+
+<div class="news">
+  <% @entites.each do |pruegel_entity|%>
+      <%= render pruegel_entity %>
+  <% end %>
+</div>
+
+<br />
+<% if (current_user.root? || current_user.admin?) then %>
+    <%= link_to 'New Comment', new_verbindung_biercomment_path(@verbindung) %>
+<% end %>

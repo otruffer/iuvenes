@@ -16,6 +16,7 @@
     <div class="navigation_bar">
       <% if user_signed_in? then %>
           <%= if current_user.root? then link_to "Verbindungen", verbindungs_path end%>
+          <%= link_to "News", verbindung_news_index_path(current_user.verbindung) %>
           <%= link_to "Anlässe", verbindung_events_path(current_user.verbindung) %>
           <%= link_to "Profil", current_user %>
           <%= if current_user.admin? || current_user.root? then link_to "Benutzer", users_path end %>

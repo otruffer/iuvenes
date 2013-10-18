@@ -1,22 +1,22 @@
 Iuvenes::Application.routes.draw do
 
-
-
   resources :verbindungs do
+    resources :biercomments do
+    end
     resources :news do
       member do
-        get "new"
+        get 'new'
       end
     end
     resources :events do
       member do
-          get "join"
-          get "leave"
+          get 'join'
+          get 'leave'
       end
     end
     member do
-      get "events_archive"
-      get "members"
+      get 'events_archive'
+      get 'members'
     end
   end
   devise_for :users,
@@ -26,11 +26,12 @@ Iuvenes::Application.routes.draw do
 
   resources :users
 
-  root :to => "home#index"
-  match "/toggle_admin" => "home#toggle_admin"
-  match "/toggle_root" => "home#toggle_root"
-  match "/events" => "route#anlaesse"
-  match "/profile" => "route#profile"
+  root :to => 'home#index'
+  match '/toggle_admin' => 'home#toggle_admin'
+  match '/toggle_root' => 'home#toggle_root'
+  match '/events' => 'route#anlaesse'
+  match '/news' => 'route#news'
+  match '/profile' => 'route#profile'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

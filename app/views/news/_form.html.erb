@@ -1,4 +1,4 @@
-<%= form_for(@news, :url => verbindung_news_index_path(@verbindung, @news)) do |f| %>
+<%= form_for(@news, :url => verbindung_news_path(@verbindung, @news)) do |f| %>
     <% if @news.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@news.errors.count, "error") %> prohibited this news from being saved:</h2>

@@ -1,0 +1,17 @@
+<div class="list_element">
+  <div class="list_element_header">
+    <div class="list_element_title">
+      <%= biercomment.title %>
+    </div>
+  </div>
+  <div class="list_element_content">
+    <%= simple_format(biercomment.content) %>
+  </div>
+  <div class="list_element_footer">
+    <%= link_to 'Anzeigen', verbindung_biercomment_path(@verbindung, biercomment) %>
+    <% if (current_user.root? || (current_user.admin? && current_user.verbindung = biercomment.verbindung)) then %>
+        <%= link_to 'Bearbeiten', edit_verbindung_biercomment_url(@verbindung, biercomment) %>
+        <%= link_to 'Löschen', verbindung_biercomment_path(@verbindung, biercomment), method: :delete, data: { confirm: 'Sind Sie sicher?' } %>
+    <% end %>
+  </div>
+</div>
