@@ -3,6 +3,8 @@ Iuvenes::Application.routes.draw do
   resources :verbindungs do
     resources :biercomments do
     end
+    resources :kants do
+    end
     resources :news do
       member do
         get 'new'

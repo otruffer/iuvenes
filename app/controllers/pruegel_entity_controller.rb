@@ -7,7 +7,7 @@ class PruegelEntityController < ApplicationController
   # GET /events.json
   def index
     @verbindung = Verbindung.find(params[:verbindung_id])
-    @entites = PruegelEntity.where(:verbindung_id => @verbindung.id).where(:type => get_type)
+    @entities = PruegelEntity.where(:verbindung_id => @verbindung.id).where(:type => get_type)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -30,7 +30,7 @@ class PruegelEntityController < ApplicationController
   # GET /events/new
   # GET /events/new.json
   def new
-    @entity = PruegelEntity.new
+    @entity = get_new()
     @verbindung = Verbindung.find(params[:verbindung_id])
     if !has_access_to_verbindung(@verbindung) then return end
 
@@ -54,7 +54,7 @@ class PruegelEntityController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @entity = PruegelEntity.new(params[:pruegel_entity])
+    @entity = get_new(params)
     @entity.type = get_type
     @entity.verbindung_id = current_user.verbindung_id
     @verbindung = Verbindung.find(current_user.verbindung_id)
@@ -62,8 +62,8 @@ class PruegelEntityController < ApplicationController
 
     respond_to do |format|
       if @entity.save
-        format.html { redirect_to verbindung_events_path(@entity.verbindung_id), notice: 'Event was successfully created.' }
-        format.json { render json: @entity, status: :created, location: @event }
+        format.html { redirect_to :action => 'index', notice: 'Event was successfully created.' }
+        format.json { render json: @entity, status: :created }
       else
         format.html { render action: "new" }
         format.json { render json: @entity.errors, status: :unprocessable_entity }
@@ -80,7 +80,7 @@ class PruegelEntityController < ApplicationController
 
     respond_to do |format|
       if @entity.update_attributes(params[:entity])
-        format.html { redirect_to @entity, notice: 'Speichern erfolgreich!' }
+        format.html { redirect_to :action => 'index', notice: 'Speichern erfolgreich!' }
           format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -99,7 +99,7 @@ class PruegelEntityController < ApplicationController
     @entity.destroy
 
     respond_to do |format|
-      format.html { redirect_to verbindung_events_url(@verbindung) }
+      format.html { redirect_to :action => 'index', :notice => 'Eintrag wurde erfolgreich geloescht.' }
       format.json { head :no_content }
     end
   end
@@ -115,5 +115,13 @@ class PruegelEntityController < ApplicationController
 
   def get_type
     return TYPE
+  end
+
+  def get_new(params = false)
+    if(params != false)
+      return PruegelEntity.new(params[:pruegel_entity])
+    else
+      return PruegelEntity.new
+    end
   end
 end

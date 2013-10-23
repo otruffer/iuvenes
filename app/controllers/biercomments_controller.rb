@@ -6,4 +6,12 @@ class BiercommentsController < PruegelEntityController
  def get_type
    return TYPE
  end
+
+  def get_new(params = false)
+    if(params != false)
+      return Biercomment.new(params[:biercomment])
+    else
+      return Biercomment.new
+    end
+  end
 end

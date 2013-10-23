@@ -1,6 +1,6 @@
-<h2>News - <%= render @verbindung %></h2>
+<h2>Kanten - <%= render @verbindung %></h2>
 
-<div class="news">
+<div class="kanten">
   <% @entities.each do |entity|%>
       <%= render entity %>
   <% end %>
@@ -8,5 +8,5 @@
 
 <br />
 <% if (current_user.root? || current_user.admin?) then %>
-    <%= link_to 'New Comment', new_verbindung_biercomment_path(@verbindung) %>
+    <%= link_to 'Neuer Kant', new_verbindung_kant_path(@verbindung) %>
 <% end %>
