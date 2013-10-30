@@ -1,3 +1,19 @@
 // Place all the styles related to the verbindungs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.detail_tooltip {
+  display: none;
+  border: solid 1px;
+  background: rgba(255,255,255,1);
+  position:absolute;
+  font-size: 12px;
+  font-weight: normal;
+  top: -50%;
+  left: 110%;
+  white-space: nowrap;
+  padding: 5px;
+}
+.verbindung {
+  display: inline-block
+}

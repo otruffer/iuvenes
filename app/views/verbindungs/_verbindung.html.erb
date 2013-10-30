@@ -1,5 +1,5 @@
 <span class="verbindung">
-  <%= link_to(verbindung.name, verbindung) %>
+  <%= link_to(verbindung.name, verbindung, title:'') %>
   <div class="detail_tooltip">
     <%= verbindung.name + (if verbindung.ort? then " ("+verbindung.ort+")" end) %> <br />
     Anzahl Mitglieder: <%= verbindung.users.count %>

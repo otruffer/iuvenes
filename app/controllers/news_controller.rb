@@ -49,7 +49,7 @@ class NewsController < ApplicationController
     @verbindung = Verbindung.find(params[:verbindung_id])
     @news = News.new(params[:news])
     @news.verbindung_id = current_user.verbindung_id
-    @news.date = Date.new
+    @news.date = Date.today
     respond_to do |format|
       if @news.save
         format.html { redirect_to verbindung_news_index_path(@verbindung), notice: 'News was successfully created.' }

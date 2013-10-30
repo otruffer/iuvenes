@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Iuvenes</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="title_and_nav">
+    <h1>IUVENES!
+     <% if user_signed_in? then %>
+       -   <%= render :partial => 'verbindungs/verbindung', :object => current_user.verbindung %>
+     <% end %>
+    </h1>
+    <div class="navigation_bar">
+      <% if user_signed_in? then %>
+          <%= if current_user.root? then link_to "Verbindungen", verbindungs_path end%>
+          <%= link_to "News", verbindung_news_index_path(current_user.verbindung) %>
+          <%= link_to "Anlässe", verbindung_events_path(current_user.verbindung) %>
+          <%= link_to "Kanten", verbindung_kants_path(current_user.verbindung) %>
+          <%= link_to "Biercomment", verbindung_biercomments_path(current_user.verbindung) %>
+          <%= link_to "Profil", current_user %>
+          <%= if current_user.admin? || current_user.root? then link_to "Benutzer", users_path end %>
+          <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+          <% if !Rails.env.production? %>
+            <%= link_to((if current_user.admin? then "ADMIN" else "NOT ADMIN" end), toggle_admin_path) %>
+            <%= link_to((if current_user.root? then "ROOT" else "NOT ROOT" end), toggle_root_path) %>
+          <% end %>
+      <% else %>
+          <%= link_to "Einloggen", new_user_session_path %>
+          <%= link_to "Registrieren", new_user_registration_path %>
+      <% end %>
+    </div>
+</div>
+<div class="content">
+    <%= yield %>
+</div>
+</body>
+</html>

@@ -34,6 +34,9 @@ Iuvenes::Application.routes.draw do
   match '/events' => 'route#anlaesse'
   match '/news' => 'route#news'
   match '/profile' => 'route#profile'
+  match '/kants' => 'route#kants'
+  match '/biercomments' => 'route#biercomments'
+  match '/statuts' => 'route#statuts'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -11,6 +11,8 @@ gem 'dotenv-rails'
 
 group :development, :test do
    gem 'sqlite3'
+   gem 'better_errors'
+   gem 'binding_of_caller'
 end
 
 group :production do
@@ -29,6 +31,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
+gem 'zurb-foundation'
 
 gem 'jquery-rails'
 

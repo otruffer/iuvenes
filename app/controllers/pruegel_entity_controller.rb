@@ -83,7 +83,7 @@ class PruegelEntityController < ApplicationController
         format.html { redirect_to :action => 'index', notice: 'Speichern erfolgreich!' }
           format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @entity.errors, status: :unprocessable_entity }
       end
     end
