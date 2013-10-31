@@ -28,7 +28,7 @@
           <li class="name">
             <h1><a href="#">IUVENES!
               <% if user_signed_in? then %>
-                  - <%= current_user.verbindung.name %>
+                  - <%= if current_user.verbindung then current_user.verbindung.name end%>
               <% end %>
             </a>
             </h1>

@@ -2,6 +2,6 @@
   <%= link_to(user.name, user) %>
 
   <div class="detail_tooltip">
-    <%= user.name + (if user.cerevis? then " v/o "+user.cerevis+"" end) %><br />
+    <%= user.name + (if user.cerevis? then " v/o "+user.cerevis+"" else "" end) %><br />
   </div>
 </span>

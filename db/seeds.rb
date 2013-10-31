@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+ver = Verbindung.create({name: 'Bertholdia', ort: 'Burgdorf'})
+User.new({cerevis: 'Pixel', name: 'Oskar Truffer', email:'oskar.truffer@gmail.com', admin: true, root: true, password: 'wdprl6', :password_confirmation => "111111", verbindung_id: ver.id }).save(:validate => false)

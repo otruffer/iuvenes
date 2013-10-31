@@ -1,6 +1,6 @@
 set :application, "iuvenes"
 set :scm, :git
-set :repository,  "http://github.com/otruffer/iuvenes.git"
+set :repository,  "https://github.com/otruffer/iuvenes.git"
 set :user, "root"
 
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
