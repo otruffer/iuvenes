@@ -1,6 +1,6 @@
-<h2>Kanten - <%= render @verbindung %></h2>
+<h2>Statuten - <%= render @verbindung %></h2>
 
-<div class="kanten">
+<div class="paragraphs">
   <% @entities.each do |entity|%>
       <%= render entity %>
   <% end %>
@@ -8,5 +8,5 @@
 
 <br />
 <% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
-    <%= link_to 'Neuer Kant', new_verbindung_kant_path(@verbindung) %>
+    <%= link_to 'Neuer Paragraph', new_verbindung_paragraph_path(@verbindung) %>
 <% end %>

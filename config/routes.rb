@@ -2,6 +2,8 @@ Iuvenes::Application.routes.draw do
 
   resources :verbindungs do
     resources :biercomments do
+      end
+    resources :paragraphs do
     end
     resources :kants do
     end
@@ -37,6 +39,8 @@ Iuvenes::Application.routes.draw do
   match '/kants' => 'route#kants'
   match '/biercomments' => 'route#biercomments'
   match '/statuts' => 'route#statuts'
+  match '/statuten' => 'route#statuten'
+  match '/paragraphs' => 'route#statuten'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

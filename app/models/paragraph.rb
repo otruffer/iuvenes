@@ -1,0 +1,3 @@
+class Paragraph < PruegelEntity
+
+end

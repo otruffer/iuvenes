@@ -45,6 +45,8 @@
                 <li><%= link_to "Kanten", verbindung_kants_path(current_user.verbindung) %></li>
                 <li class="divider"></li>
                 <li><%= link_to "Biercomment", verbindung_biercomments_path(current_user.verbindung) %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Statuten", verbindung_paragraphs_path(current_user.verbindung) %></li>
             <% end %>
           </ul>
           <ul class="right">

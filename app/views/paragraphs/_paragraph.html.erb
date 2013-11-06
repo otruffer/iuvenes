@@ -1,0 +1,17 @@
+<div class="list_element">
+  <div class="list_element_header">
+    <div class="list_element_title">
+      <%= paragraph.title %>
+    </div>
+  </div>
+  <div class="list_element_content">
+    <%= simple_format(paragraph.content) %>
+  </div>
+  <div class="list_element_footer">
+    <%= link_to 'Anzeigen', verbindung_paragraph_path(@verbindung, paragraph) %>
+    <% if (current_user.root? || (current_user.admin? && current_user.verbindung = paragraph.verbindung)) then %>
+        <%= link_to 'Bearbeiten', edit_verbindung_paragraph_url(@verbindung, paragraph) %>
+        <%= link_to 'Löschen', verbindung_paragraph_path(@verbindung, paragraph), method: :delete, data: { confirm: 'Sind Sie sicher?' } %>
+    <% end %>
+  </div>
+</div>                                                                                                          <

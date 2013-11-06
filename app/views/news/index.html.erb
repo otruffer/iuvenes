@@ -7,6 +7,6 @@
 </div>
 
 <br />
-<% if (current_user.root? || current_user.admin?) then %>
+<% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
     <%= link_to 'New Event', new_verbindung_news_path(@verbindung) %>
 <% end %>

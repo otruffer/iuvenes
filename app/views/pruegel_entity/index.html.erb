@@ -1,12 +1,12 @@
 <h2>News - <%= render @verbindung %></h2>
 
-<div class="news">
+<div class="list">
   <% @entities.each do |entity|%>
       <%= render entity %>
   <% end %>
 </div>
 
 <br />
-<% if (current_user.root? || current_user.admin?) then %>
+<% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
     <%= link_to 'New Comment', new_verbindung_biercomment_path(@verbindung) %>
 <% end %>

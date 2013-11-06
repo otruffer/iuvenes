@@ -45,6 +45,17 @@ class RouteController < ApplicationController
     end
   end
 
+  # GET /statuten
+  # GET /statuten.json
+  def statuten
+    @id = current_user.verbindung_id
+
+    respond_to do |format|
+      format.html { redirect_to verbindung_paragraphs_path(@id) }
+      format.json { redirect_to verbindung_paragraphs_path(@id, format: :json) }
+    end
+  end
+
   # GET /statuts
   # GET /statuts.json
   def statuts
