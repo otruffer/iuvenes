@@ -1,12 +1,32 @@
-<h2>News - <%= render @verbindung %></h2>
+<div class="row section_header">
+  <div class="column large-9 section_title">
+    Biercomment - <%= render @verbindung %>
+  </div>
+  <div class="column large-3 section_buttons">
+    <ul class='button-group'>
+      <% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
+          <li class='button small secondary'>
+            <%= link_to 'Neuer Comment', new_verbindung_biercomment_path(@verbindung) %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
-<div class="list">
+<div class="row events">
   <% @entities.each do |entity|%>
       <%= render entity %>
   <% end %>
 </div>
 
-<br />
-<% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
-    <%= link_to 'New Comment', new_verbindung_biercomment_path(@verbindung) %>
-<% end %>
+<div class="row section_footer">
+  <div class="column large-3 large-offset-9 section_buttons">
+    <ul class='button-group'>
+      <% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
+          <li class='button small secondary'>
+            <%= link_to 'Neuer Comment', new_verbindung_biercomment_path(@verbindung) %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

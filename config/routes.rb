@@ -28,7 +28,11 @@ Iuvenes::Application.routes.draw do
                  :sessions => 'devise_iuvenes',
              }
 
-  resources :users
+  resources :users do
+    member do
+      post 'approve'
+    end
+  end
 
   root :to => 'home#index'
   match '/toggle_admin' => 'home#toggle_admin'

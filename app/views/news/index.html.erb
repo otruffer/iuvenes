@@ -1,12 +1,36 @@
-<h2>News - <%= render @verbindung %></h2>
+<div class="row section_header">
+  <div class="column large-9 section_title">
+    News - <%= render @verbindung %>
+  </div>
+  <div class="column large-3 section_buttons">
+    <% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
+        <ul class='button-group'>
+          <li class='button small secondary'>
+            <%= link_to 'New Event', new_verbindung_news_path(@verbindung) %>
+          </li>
+        </ul>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <%= will_paginate @news %>
+</div>
 
-<div class="news">
+<div class="row news">
   <% @news.each do |the_news|%>
       <%= render the_news %>
   <% end %>
 </div>
 
-<br />
-<% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
-    <%= link_to 'New Event', new_verbindung_news_path(@verbindung) %>
-<% end %>
+<div class="row section_footer">
+  <%= will_paginate @news %>
+  <div class="column large-3 large-offset-9 section_buttons">
+    <% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
+        <ul class='button-group'>
+          <li class='button small secondary'>
+            <%= link_to 'New Event', new_verbindung_news_path(@verbindung) %>
+          </li>
+        </ul>
+    <% end %>
+  </div>
+</div>

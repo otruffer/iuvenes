@@ -5,7 +5,7 @@ class NewsController < ApplicationController
   # GET /news.json
   def index
     @verbindung = Verbindung.find(params[:verbindung_id])
-    @news = News.where(:verbindung_id => @verbindung)
+    @news = News.where(:verbindung_id => @verbindung).paginate(:page => params[:page], :per_page => 1)
 
     respond_to do |format|
       format.html # index.html.erb

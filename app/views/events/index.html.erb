@@ -1,13 +1,39 @@
-<h2>Anlässe - <%= render @verbindung %></h2>
 
-<div class="events">
-<% @events.each do |event|%>
-    <%= render event %>
-<% end %>
+<div class="row section_header">
+  <div class="column large-9 section_title">
+    Anlässe - <%= render @verbindung %>
+  </div>
+  <div class="column large-3 section_buttons">
+    <ul class='button-group'>
+      <li class='button small secondary'>
+        <%= link_to 'Archiv', events_archive_verbindung_path(@verbindung) %>
+      </li>
+        <% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
+          <li class='button small secondary'>
+            <%= link_to 'New Event', new_verbindung_news_path(@verbindung) %>
+          </li>
+        <% end %>
+    </ul>
+  </div>
 </div>
 
-<br />
-<% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
-    <%= link_to 'New Event', new_verbindung_event_path(@verbindung) %>
-<% end %>
-<%= link_to 'Archiv', events_archive_verbindung_path(@verbindung) %>
+<div class="row events">
+  <% @events.each do |event|%>
+      <%= render event %>
+  <% end %>
+</div>
+
+<div class="row section_footer">
+  <div class="column large-3 large-offset-9 section_buttons">
+    <ul class='button-group'>
+      <li class='button small secondary'>
+        <%= link_to 'Archiv', events_archive_verbindung_path(@verbindung) %>
+      </li>
+      <% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
+          <li class='button small secondary'>
+            <%= link_to 'New Event', new_verbindung_news_path(@verbindung) %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

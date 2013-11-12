@@ -14,4 +14,9 @@ class ParagraphsController < PruegelEntityController
       return Paragraph.new
     end
   end
+
+
+  def parse_entry_params(params)
+    return params[:paragraph]
+  end
 end

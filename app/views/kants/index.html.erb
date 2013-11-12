@@ -1,12 +1,32 @@
-<h2>Kanten - <%= render @verbindung %></h2>
+<div class="row section_header">
+  <div class="column large-9 section_title">
+    Kanten - <%= render @verbindung %>
+  </div>
+  <div class="column large-3 section_buttons">
+    <ul class='button-group'>
+      <% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
+          <li class='button small secondary'>
+            <%= link_to 'Neuer Kant', new_verbindung_kant_path(@verbindung) %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
-<div class="kanten">
+<div class="row events">
   <% @entities.each do |entity|%>
       <%= render entity %>
   <% end %>
 </div>
 
-<br />
-<% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
-    <%= link_to 'Neuer Kant', new_verbindung_kant_path(@verbindung) %>
-<% end %>
+<div class="row section_footer">
+  <div class="column large-3 large-offset-9 section_buttons">
+    <ul class='button-group'>
+      <% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
+          <li class='button small secondary'>
+            <%= link_to 'Neuer Kant', new_verbindung_kant_path(@verbindung) %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

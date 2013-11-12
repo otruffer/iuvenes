@@ -1,22 +1,45 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @verbindung.name %>
-</p>
+<div class='row entry verbindung'>
+    <div class='column small-12'>
 
-<p>
-  <b>Ort:</b>
-  <%= @verbindung.ort %>
-</p>
+      <div class='row entry_header'>
+        <div class='column large-9 entry_title'>
+          <%= @verbindung.name %>
+        </div>
+        <div class='column large-3 entry_pic right'>
+          <div class='verbindung_logo' style="background-image: url(<%=@verbindung.logo.url(:small) %>)"></div>
+        </div>
+      </div>
 
-<p>
-  <%= link_to 'Anlässe', verbindung_events_path(@verbindung) %>
-</p>
+      <div class='row entry_body'>
+        <div class='column large-12'>
+            <div class='row form_row'>
+                <div class='column small-3 form_label'>Name</div>
+                <div class='column small-6 form_value left'><%= @verbindung.name %></div>
+            </div>
+            <div class='row form_row'>
+                <div class='column small-3 form_label'>Ort</div>
+                <div class='column small-6 form_value left'><%= @verbindung.ort %></div>
+            </div>
+        </div>
+      </div>
 
-<p>
-  <%= link_to 'Mitglieder', members_verbindung_path(@verbindung) %>
-</p>
-
-<%= link_to 'Edit', edit_verbindung_path(@verbindung) %> |
-<%= link_to 'Back', verbindungs_path %>
+      <div class='row entry_footer'>
+        <div class='column entry_buttons'>
+          <ul class='button-group'>
+            <li class='button small secondary'>
+              <%= link_to 'Anlässe', verbindung_events_path(@verbindung) %>
+            </li>
+            <li class='button small secondary'>
+              <%= link_to 'Mitglieder', members_verbindung_path(@verbindung) %>
+            </li>
+            <% if (current_user.root? || (current_user.admin? && @verbindung = current_user.verbindung)) then %>
+                <li class='button small secondary'>
+                  <%= link_to 'Bearbeiten', edit_verbindung_path(@verbindung) %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>

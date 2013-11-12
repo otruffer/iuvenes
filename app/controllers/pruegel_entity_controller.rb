@@ -79,7 +79,7 @@ class PruegelEntityController < ApplicationController
     if !has_access_to_verbindung(@verbindung) then return end
 
     respond_to do |format|
-      if @entity.update_attributes(params[:entity])
+      if @entity.update_attributes(parse_entry_params(params))
         format.html { redirect_to :action => 'index', notice: 'Speichern erfolgreich!' }
           format.json { head :no_content }
       else

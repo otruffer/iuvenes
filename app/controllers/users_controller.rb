@@ -6,8 +6,10 @@ class UsersController < ApplicationController
   def index
     if (current_user.root)
       @users = User.all
+      @unapproved_users = User.where(:approved => false)
     elsif (current_user.admin)
       @users = User.where(:verbindung_id => current_user.verbindung_id)
+      @unapproved_users = User.where(:verbindung_id => current_user.verbindung_id, :approved => false)
     else
       redirect_to root_path
       return
@@ -101,6 +103,23 @@ class UsersController < ApplicationController
       return false
     end
     return true
+  end
+
+  def approve
+    @user = User.find(params[:id])
+    if !(current_user.root? ||(current_user.admin? && current_user.verbindung == @user.verbindung))
+      redirect_to root_path
+      return
+    end
+
+    @user.approved = true
+    @user.save
+    respond_to do |format|
+      format.html {
+        redirect_to users_path, :notice => 'Benutzer wurde freigeschaltet.'
+      }
+      format.json {head :no_content}
+    end
   end
 
   def check_root
