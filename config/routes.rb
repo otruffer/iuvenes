@@ -2,12 +2,24 @@ Iuvenes::Application.routes.draw do
 
   resources :verbindungs do
     resources :biercomments do
+      collection do
+        get 'search'
+      end
       end
     resources :paragraphs do
+      collection do
+        get 'search'
+      end
     end
     resources :kants do
+      collection do
+        get 'search'
+      end
     end
     resources :news do
+      collection do
+        get 'search'
+      end
       member do
         get 'new'
       end
@@ -20,6 +32,7 @@ Iuvenes::Application.routes.draw do
     end
     member do
       get 'events_archive'
+      get 'logo'
       get 'members'
     end
   end
@@ -28,7 +41,12 @@ Iuvenes::Application.routes.draw do
                  :sessions => 'devise_iuvenes',
              }
 
-  resources :users
+  resources :users do
+    member do
+      post 'approve'
+      post 'addPushNotification'
+    end
+  end
 
   root :to => 'home#index'
   match '/toggle_admin' => 'home#toggle_admin'
@@ -37,10 +55,13 @@ Iuvenes::Application.routes.draw do
   match '/news' => 'route#news'
   match '/profile' => 'route#profile'
   match '/kants' => 'route#kants'
+  match '/api' => 'route#api'
   match '/biercomments' => 'route#biercomments'
   match '/statuts' => 'route#statuts'
   match '/statuten' => 'route#statuten'
+  match '/verbindung' => 'route#verbindung'
   match '/paragraphs' => 'route#statuten'
+  match '/bieruhr' => 'route#bieruhr'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

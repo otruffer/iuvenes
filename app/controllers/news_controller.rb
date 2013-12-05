@@ -5,7 +5,7 @@ class NewsController < ApplicationController
   # GET /news.json
   def index
     @verbindung = Verbindung.find(params[:verbindung_id])
-    @news = News.where(:verbindung_id => @verbindung)
+    @news = News.where(:verbindung_id => @verbindung).paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -21,6 +21,18 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.json { render json: @news }
+    end
+  end
+
+  def search
+    @verbindung = Verbindung.find(params[:verbindung_id])
+    @news = News.where(:verbindung_id => @verbindung.id).paginate(:page => params[:page], :conditions =>
+        ['title like ? OR content like ?', "%#{params[:search]}%", "%#{params[:search]}%"])
+    @search = params[:search]
+
+    respond_to do |format|
+      format.html {render 'index'}
       format.json { render json: @news }
     end
   end

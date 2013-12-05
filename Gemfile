@@ -6,8 +6,11 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'devise'
-gem "bcrypt-ruby"
+gem 'bcrypt-ruby'
 gem 'dotenv-rails'
+gem 'paperclip', "~> 3.0"
+gem 'jquery-ui-rails'
+gem 'touchpunch-rails'
 
 group :development, :test do
    gem 'sqlite3'
@@ -34,6 +37,9 @@ end
 gem 'zurb-foundation'
 
 gem 'jquery-rails'
+gem 'will_paginate'
+
+gem 'jquery-minicolors-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

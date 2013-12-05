@@ -7,7 +7,7 @@ class PruegelEntityController < ApplicationController
   # GET /events.json
   def index
     @verbindung = Verbindung.find(params[:verbindung_id])
-    @entities = PruegelEntity.where(:verbindung_id => @verbindung.id).where(:type => get_type)
+    @entities = PruegelEntity.where(:verbindung_id => @verbindung.id).where(:type => get_type).paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,6 +24,18 @@ class PruegelEntityController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @entity }
+    end
+  end
+
+  def search
+    @verbindung = Verbindung.find(params[:verbindung_id])
+    @entities = PruegelEntity.where(:verbindung_id => @verbindung).paginate(:page => params[:page], :conditions =>
+        ['title like ? OR content like ?', "%#{params[:search]}%", "%#{params[:search]}%"])
+    @search = params[:search]
+
+    respond_to do |format|
+      format.html {render 'index'}
+      format.json {render :json => @entities}
     end
   end
 
@@ -57,6 +69,8 @@ class PruegelEntityController < ApplicationController
     @entity = get_new(params)
     @entity.type = get_type
     @entity.verbindung_id = current_user.verbindung_id
+    @entity.creator = current_user.id
+    @entity.last_edited_by = current_user.id
     @verbindung = Verbindung.find(current_user.verbindung_id)
     if !has_access_to_verbindung(@verbindung) then return end
 
@@ -76,10 +90,11 @@ class PruegelEntityController < ApplicationController
   def update
     @entity = PruegelEntity.find(params[:id])
     @verbindung = Verbindung.find(params[:verbindung_id])
+    params[:last_edited_by] = current_user.id
     if !has_access_to_verbindung(@verbindung) then return end
 
     respond_to do |format|
-      if @entity.update_attributes(params[:entity])
+      if @entity.update_attributes(parse_entry_params(params))
         format.html { redirect_to :action => 'index', notice: 'Speichern erfolgreich!' }
           format.json { head :no_content }
       else

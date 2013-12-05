@@ -1,20 +1,32 @@
-<div class="news">
-  <div class="news_header">
-    <div class="news_title">
-      <%= news.title %>
+<div class='row entry'>
+
+    <div class='row entry_header'>
+        <div class='column large-9 entry_title'>
+          <%= news.title %>
+        </div>
+        <div class='column large-3 entry_date right'>
+          <%= I18n.l news.date %>
+        </div>
     </div>
-    <div class = "news_date">
-      <%= I18n.l news.date %>
+
+    <div class='row entry_body'>
+        <div class='column entry_content'>
+          <%= simple_format(news.content) %>
+        </div>
     </div>
-  </div>
-  <div class="news_content">
-    <%= simple_format(news.content) %>
-  </div>
-  <div class="news_footer">
-    <%= link_to 'Anzeigen', verbindung_news_path(@verbindung, news) %>
-    <% if (current_user.root? || (current_user.admin? && current_user.verbindung = event.verbindung)) then %>
-        <%= link_to 'Bearbeiten', edit_verbindung_news_path(@verbindung, news) %>
-        <%= link_to 'Löschen', verbindung_news_path(@verbindung, news), method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-  </div>
+
+    <div class='row entry_footer'>
+      <div class='column entry_buttons'>
+          <ul class='button-group'>
+            <% if (current_user.root? || (current_user.admin? && current_user.verbindung = news.verbindung)) then %>
+                <li class='button small secondary'>
+                  <%= link_to 'Bearbeiten', edit_verbindung_news_path(@verbindung, news) %>
+                </li>
+                <li class='button small secondary'>
+                  <%= link_to 'Löschen', verbindung_news_path(@verbindung, news), method: :delete, data: { confirm: 'Are you sure?' } %>
+                </li>
+            <% end %>
+          </ul>
+      </div>
+    </div>
 </div>

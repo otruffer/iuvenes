@@ -1,12 +1,51 @@
-<h2>News - <%= render @verbindung %></h2>
+<div class="row section_header">
+  <div class="column small-9 section_title">
+    News - <%= render @verbindung %>
+  </div>
+  <div class="column small-3 section_buttons">
+        <ul class='button-group'>
+        <% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
+              <li class='button small secondary'>
+                <%= link_to 'Neue News', new_verbindung_news_path(@verbindung) %>
+              </li>
+        <% end %>
+                <li class='button small secondary start_search_button'>
+                  <!--<div class="start_search_img">&nbsp;</div>-->
+                 <a href="#">Q</a>
+              </li>
+        </ul>
+  </div>
+</div>
 
-<div class="news">
+<div class="row section_navigation">
+  <div class="column small-12 large-6 section_paginate hide-for-small">
+      <%= will_paginate @news %>
+  </div>
+  <div class="column small-12 large-6 section_search">
+    <%= form_tag search_verbindung_news_index_path, :method => "get" do%>
+        <%= submit_tag("Suche", :class => "button small secondary, search_button")%>
+        <%= text_field_tag(:search, @search, :class => "search_input")%>
+    <% end %>
+  </div>
+  <div class="column small-12 large-6 section_paginate show-for-medium-up">
+    <%= will_paginate @news %>
+  </div>
+</div>
+
+<div class="row news">
   <% @news.each do |the_news|%>
       <%= render the_news %>
   <% end %>
 </div>
 
-<br />
-<% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
-    <%= link_to 'New Event', new_verbindung_news_path(@verbindung) %>
-<% end %>
+<div class="row section_footer">
+  <div class="column large-3 large-offset-9 section_buttons">
+    <% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
+        <ul class='button-group'>
+          <li class='button small secondary'>
+            <%= link_to 'Neue News', new_verbindung_news_path(@verbindung) %>
+          </li>
+        </ul>
+    <% end %>
+  </div>
+</div>

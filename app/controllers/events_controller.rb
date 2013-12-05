@@ -73,7 +73,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to verbindung_events_url(@verbindung), :notice => 'Event was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

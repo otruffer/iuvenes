@@ -1,6 +1,6 @@
 class VerbindungsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:edit, :update, :destroy, :create]
+  before_filter :authenticate_user!
   before_filter :check_root, :only => [:destroy]
 
   # GET /verbindungs
@@ -121,5 +121,15 @@ class VerbindungsController < ApplicationController
       false
     end
     true
+  end
+
+  def logo
+    @verbindung = Verbindung.find(params[:id])
+    if !params[:size]
+      params[:size] = 'medium'
+    end
+    respond_to do |format|
+      format.json { render json: '{ "logo_path": "'+@verbindung.logo.url(params[:size])+'"}'}
+    end
   end
 end

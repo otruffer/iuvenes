@@ -1,7 +1,12 @@
 <span class="verbindung">
   <%= link_to(verbindung.name, verbindung, title:'') %>
   <div class="detail_tooltip">
+    <div class="row">
+    <div class="column large-2 tooltip_pic" style="background-image: url(<%= verbindung.logo.url(:xsmall) %>)"></div>
+    <div class="column large-7 tooltip_text left">
     <%= verbindung.name + (if verbindung.ort? then " ("+verbindung.ort+")" end) %> <br />
     Anzahl Mitglieder: <%= verbindung.users.count %>
+    </div>
+    </div>
   </div>
 </span>

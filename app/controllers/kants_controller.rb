@@ -14,4 +14,9 @@ class KantsController < PruegelEntityController
       return Kant.new
     end
   end
+
+
+  def parse_entry_params(params)
+    return params[:kant]
+  end
 end

@@ -1,17 +1,32 @@
-<div class="list_element">
-  <div class="list_element_header">
-    <div class="list_element_title">
+<div class='row entry'>
+
+  <div class='row entry_header'>
+    <div class='column large-9 entry_title'>
       <%= kant.title %>
     </div>
+    <div class='column large-3 entry_date right'>
+    </div>
   </div>
-  <div class="list_element_content">
-    <%= simple_format(kant.content) %>
+
+  <div class='row entry_body'>
+    <div class='column entry_content'>
+      <%= simple_format(kant.content) %>
+    </div>
   </div>
-  <div class="list_element_footer">
-    <%= link_to 'Anzeigen', verbindung_kant_path(@verbindung, kant) %>
-    <% if (current_user.root? || (current_user.admin? && current_user.verbindung = biercomment.verbindung)) then %>
-        <%= link_to 'Bearbeiten', edit_verbindung_kant_url(@verbindung, kant) %>
-        <%= link_to 'Löschen', verbindung_kant_path(@verbindung, kant), method: :delete, data: { confirm: 'Sind Sie sicher?' } %>
-    <% end %>
+
+  <div class='row entry_footer'>
+    <div class='column large-9 right entry_buttons'>
+      <ul class='button-group'>
+
+          <% if (current_user.root? || (current_user.admin? && current_user.verbindung = kant.verbindung)) then %>
+            <li class='button small secondary'>
+                <%= link_to 'Bearbeiten', edit_verbindung_kant_url(@verbindung, kant) %>
+            </li>
+            <li class='button small secondary'>
+                <%= link_to 'Löschen', verbindung_kant_path(@verbindung, kant), method: :delete, data: { confirm: 'Sind Sie sicher?' } %>
+            </li>
+      <% end %>
+      </ul>
+    </div>
   </div>
 </div>

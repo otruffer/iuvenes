@@ -1,37 +1,53 @@
-<div class="event">
-  <div class="event_header">
-    <div class="event_title">
+<div class='row entry'>
+
+  <div class='row entry_header'>
+    <div class='column large-9 entry_title'>
       <%= event.title %>
     </div>
-    <div class = "event_participants">
-      Teilnehmer: <%= event.users.count %>
-      <% if event.users.count > 0 %>
-          <div class = "detail_tooltip">
-              <% event.users.each do |user| %>
-                  <%= user.email %> <br />
-              <% end %>
-          </div>
-      <% end %>
-    </div>
-    <div class = "event_date">
+    <div class='column large-3 entry_date right'>
       <%= I18n.l event.date %>
     </div>
   </div>
-  <div class="event_content">
-    <%= simple_format(event.content) %>
+
+  <div class='row entry_body'>
+    <div class='column entry_content'>
+      <%= simple_format(event.content) %>
+    </div>
   </div>
-  <div class="event_footer">
-    <%= link_to 'Anzeigen', verbindung_event_path(@verbindung, event) %>
-    <% if (current_user.root? || (current_user.admin? && current_user.verbindung = event.verbindung)) then %>
-        <%= link_to 'Bearbeiten', edit_verbindung_event_path(@verbindung, event) %>
-        <%= link_to 'Löschen', verbindung_event_path(@verbindung, event), method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% if event.date >= Date.today then %>
-            <% if event.users.include? current_user then %>
-                <%= link_to 'Nicht mehr teilnehmen', leave_verbindung_event_path(@verbindung, event) %>
-            <% else %>
-                <%= link_to 'Teilnehmen', join_verbindung_event_path(@verbindung, event) %>
+
+  <div class='row entry_footer'>
+    <div class='column large-3 event_participants'>
+      Teilnehmer: <%= event.users.count %>
+      <% if event.users.count > 0 %>
+          <div class = "detail_tooltip">
+            <% event.users.each do |user| %>
+                <%= user.email %> <br />
             <% end %>
+          </div>
+      <% end %>
+    </div>
+
+    <div class='column large-9 right entry_buttons'>
+      <ul class='button-group'>
+        <% if (current_user.root? || (current_user.admin? && current_user.verbindung = event.verbindung)) then %>
+
+            <li class='button small secondary'>
+              <%= link_to 'Bearbeiten', edit_verbindung_event_path(@verbindung, event) %>
+            </li>
+            <li class='button small secondary'>
+              <%= link_to 'Löschen', verbindung_event_path(@verbindung, event), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </li >
+            <li class='button small secondary'>
+              <% if event.date >= Date.today then %>
+                  <% if event.users.include? current_user then %>
+                      <%= link_to 'Nicht mehr teilnehmen', leave_verbindung_event_path(@verbindung, event) %>
+                  <% else %>
+                      <%= link_to 'Teilnehmen', join_verbindung_event_path(@verbindung, event) %>
+                  <% end %>
+              <% end %>
+            </li>
         <% end %>
-    <% end %>
+      </ul>
+    </div>
   </div>
 </div>

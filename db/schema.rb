@@ -11,15 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131018130527) do
+ActiveRecord::Schema.define(:version => 20131122143508) do
 
   create_table "events", :force => true do |t|
     t.string   "title"
     t.text     "content"
     t.date     "date"
     t.integer  "verbindung_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "creator",         :default => 0
+    t.integer  "last_updated_by", :default => 0
   end
 
   create_table "events_users", :force => true do |t|
@@ -32,8 +34,10 @@ ActiveRecord::Schema.define(:version => 20131018130527) do
     t.string   "title"
     t.date     "date"
     t.integer  "verbindung_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "creator",         :default => 0
+    t.integer  "last_updated_by", :default => 0
   end
 
   add_index "news", ["verbindung_id"], :name => "index_news_on_verbindung_id"
@@ -43,13 +47,15 @@ ActiveRecord::Schema.define(:version => 20131018130527) do
     t.string  "title"
     t.string  "type"
     t.integer "verbindung_id"
+    t.integer "creator",         :default => 0
+    t.integer "last_updated_by", :default => 0
   end
 
   add_index "pruegel_entities", ["verbindung_id"], :name => "index_pruegel_entities_on_verbindung_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -59,23 +65,33 @@ ActiveRecord::Schema.define(:version => 20131018130527) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "cerevis"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.boolean  "admin"
     t.boolean  "root"
     t.integer  "verbindung_id"
     t.boolean  "activated"
     t.string   "name"
+    t.boolean  "approved",               :default => false, :null => false
   end
 
+  add_index "users", ["approved"], :name => "index_users_on_approved"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "verbindungs", :force => true do |t|
     t.string   "name"
     t.string   "ort"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.string   "first_color",       :default => "#444444", :null => false
+    t.string   "second_color",      :default => "#444444", :null => false
+    t.string   "third_color",       :default => "#444444", :null => false
+    t.string   "description",       :default => "",        :null => false
   end
 
 end

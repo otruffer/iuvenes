@@ -15,9 +15,30 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+   <div class="verbindung_logo" style="background-image: url(<%=@verbindung.logo.url(:small) %>)"></div>
+   <div class="field">
+    <%= f.label :logo %><br />
+    <%= f.file_field :logo %>
+  </div>
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_area :description %>
+    </div>
   <div class="field">
     <%= f.label :ort %><br />
     <%= f.text_field :ort %>
+  </div>
+  <div class="field">
+    <%= f.label :first_color %><br />
+    <input type='text' id="verbindung_first_color" name="verbindung[first_color]" class="color_picker" value="<%= @verbindung.first_color%>" />
+  </div>
+  <div class="field">
+    <%= f.label :second_color %><br />
+    <input type='text' id="verbindung_second_color" name="verbindung[second_color]" class="color_picker" value="<%= @verbindung.second_color%>" />
+  </div>
+  <div class="field">
+    <%= f.label :third_color %><br />
+    <input type='text' id="verbindung_third_color" name="verbindung[third_color]" class="color_picker" value="<%= @verbindung.third_color%>" />
   </div>
   <div class="actions">
     <%= f.submit %>

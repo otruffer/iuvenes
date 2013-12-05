@@ -18,6 +18,12 @@
     <%= f.label :cerevis %><br />
     <%= f.text_field :cerevis %>
   </div>
+    <% if current_user.root? || (current_user.verbindung_id == @user.verbindung_id && current_user.admin?) %>
+        <div>
+          <%= f.label :admin %>
+          <%= f.check_box :admin%>
+        </div>
+    <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -4,6 +4,9 @@
 de:
   hello: "hallo"
   january: "Januar"
+  will_paginate:
+    next_label: ">"
+    previous_label: "<"
   date:
       abbr_day_names:
       - So
@@ -57,3 +60,45 @@ de:
       - :day
       - :month
       - :year
+  devise:
+    devise_iuvenes:
+      user:
+        signed_out: Sie haben sich erfolgreich abgemeldet.
+        signed_in: Anmeldung erfolgreich.
+    registrations:
+      user:
+        signed_up_but_not_approved: Der Benutzer wurde registriert, muss aber noch von einem Administrator freigegeben werden.
+    failure:
+      user:
+        not_found_in_database: Falsche E-Mail Adresse oder Benutzername.
+        not_approved: Der Benutzer wurde noch nicht von einem Administratoren freigeschaltet.
+  activerecord:
+    errors:
+      models:
+        pruegel_entity:
+          attributes:
+            title:
+              blank: Sie müssen einen Titel setzten.
+        verbindung:
+          attributes:
+            logo_content_type:
+              invalid: Das Logo muss ein Bild im .PNG Format sein.
+            logo:
+              in_between: Die Dateigrösse des Logos darf 1MB nicht überschreiten.
+            logo_file_size:
+              in_between: Die Dateigrösse des Logos darf 1MB nicht überschreiten.
+        user:
+          attributes:
+            email:
+              taken: Diese E-Mail Addresse wird bereits verwendet.
+            name:
+              blank: Bitte geben Sie einen Namen ein.
+  number:
+    human:
+      storage_units:
+        format: Das Logo muss ein Bild im .PNG Format sein.
+        units:
+          byte: byte
+  errors:
+    messages:
+      not_saved: Nicht gespeichert.

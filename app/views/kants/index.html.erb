@@ -1,12 +1,51 @@
-<h2>Kanten - <%= render @verbindung %></h2>
+<div class="row section_header">
+  <div class="column small-9 section_title">
+    Kanten - <%= render @verbindung %>
+  </div>
+  <div class="column small-3 section_buttons">
+    <ul class='button-group'>
+      <% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
+          <li class='button small secondary'>
+            <%= link_to 'Neuer Kant', new_verbindung_kant_path(@verbindung) %>
+          </li>
+      <% end %>
+      <li class='button small secondary start_search_button'>
+        <!--<div class="start_search_img">&nbsp;</div>-->
+        <a href="#">Q</a>
+      </li>
+    </ul>
+  </div>
+</div>
 
-<div class="kanten">
+<div class="row section_navigation">
+  <div class="column small-12 large-6 section_paginate hide-for-small">
+    <%= will_paginate @entities %>
+  </div>
+  <div class="column small-12 large-6 section_search">
+    <%= form_tag search_verbindung_kants_path, :method => "get" do%>
+        <%= submit_tag("Suche", :class => "button small secondary, search_button")%>
+        <%= text_field_tag(:search, @search, :class => "search_input")%>
+    <% end %>
+  </div>
+  <div class="column small-12 large-6 section_paginate show-for-small">
+    <%= will_paginate @entities %>
+  </div>
+</div>
+
+<div class="row events">
   <% @entities.each do |entity|%>
       <%= render entity %>
   <% end %>
 </div>
 
-<br />
-<% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
-    <%= link_to 'Neuer Kant', new_verbindung_kant_path(@verbindung) %>
-<% end %>
+<div class="row section_footer">
+  <div class="column large-3 large-offset-9 section_buttons">
+    <ul class='button-group'>
+      <% if (current_user.root? || (current_user.admin? && current_user.verbindung_id == @verbindung.id)) then %>
+          <li class='button small secondary'>
+            <%= link_to 'Neuer Kant', new_verbindung_kant_path(@verbindung) %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

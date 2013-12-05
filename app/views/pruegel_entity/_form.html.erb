@@ -1,7 +1,7 @@
 <%= form_for [@verbindung, @entity] do |f| %>
     <% if @entity.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@entity.errors.count, "error") %> prohibited this event from being saved:</h2>
+      <h2><%= @entity.errors.count %> Fehler ist aufgetreten:</h2>
 
       <ul>
       <% @entity.errors.full_messages.each do |msg| %>

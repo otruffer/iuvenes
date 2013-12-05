@@ -205,15 +205,15 @@ $default-float: left;
 
 // Style paragraphs
 
-// $paragraph.rb-font-family: inherit;
-// $paragraph.rb-font-weight: normal;
-// $paragraph.rb-font-size: 1em;
-// $paragraph.rb-line-height: 1.6;
-// $paragraph.rb-margin-bottom: em-calc(20);
-// $paragraph.rb-aside-font-size: em-calc(14);
-// $paragraph.rb-aside-line-height: 1.35;
-// $paragraph.rb-aside-font-style: italic;
-// $paragraph.rb-text-rendering: optimizeLegibility;
+// $paragraph-font-family: inherit;
+// $paragraph-font-weight: normal;
+// $paragraph-font-size: 1em;
+// $paragraph-line-height: 1.6;
+// $paragraph-margin-bottom: em-calc(20);
+// $paragraph-aside-font-size: em-calc(14);
+// $paragraph-aside-line-height: 1.35;
+// $paragraph-aside-font-style: italic;
+// $paragraph-text-rendering: optimizeLegibility;
 
 // Style <code> tags
 
@@ -1255,8 +1255,8 @@ $default-float: left;
 
 // Background color for the top bar
 
-// $topbar-bg-color: #111;
-// $topbar-bg: $topbar-bg-color;
+$topbar-bg-color: #1a266a;
+$topbar-bg: $topbar-bg-color;
 
 // Height and margin
 
@@ -1274,11 +1274,11 @@ $default-float: left;
 
 // Style the top bar dropdown elements
 
-// $topbar-dropdown-bg: #222;
+$topbar-dropdown-bg: #1a266a;
 // $topbar-dropdown-link-color: #fff;
 // // $topbar-dropdown-link-bg: lighten($topbar-bg-color, 5%);
 // $topbar-dropdown-toggle-size: 5px;
-// $topbar-dropdown-toggle-color: #fff;
+$topbar-dropdown-toggle-color: #000;
 // $topbar-dropdown-toggle-alpha: 0.5;
 
 // Set the link colors and styles for top-level nav
@@ -1288,15 +1288,16 @@ $default-float: left;
 // $topbar-link-color-active: #fff;
 // $topbar-link-weight: bold;
 // $topbar-link-font-size: em-calc(13);
-// $topbar-link-hover-lightness: -30%; // Darken by 30%
-// $topbar-link-bg-hover: darken($topbar-bg-color, 3%);
-// $topbar-link-bg-active: darken($topbar-bg-color, 3%);
+$topbar-link-hover-lightness: -10%; // Darken by 30%
+$topbar-link-bg-hover: darken($topbar-bg-color, 10%);
+$topbar-link-bg-active: darken($topbar-bg-color, 10%);
 
 // $topbar-dropdown-label-color: #555;
 // $topbar-dropdown-label-text-transform: uppercase;
 // $topbar-dropdown-label-font-weight: bold;
 // $topbar-dropdown-label-font-size: em-calc(10);
-// $topbar-dropdown-label-bg: lighten($topbar-bg-color, 5%);
+//$topbar-dropdown-label-bg: lighten($topbar-bg-color, 100%);
+$topbar-dropdown-label-bg: transparent;
 
 // Top menu icon styles
 
@@ -1311,7 +1312,7 @@ $default-float: left;
 // Transitions and breakpoint styles
 
 // $topbar-transition-speed: 300ms;
-// $topbar-breakpoint: 940 !default; // Change to 9999px for always mobile layout
+$topbar-breakpoint: em-calc(768); // Change to 9999px for always mobile layout
 // $topbar-media-query: "only screen and (min-width: #{$topbar-breakpoint})";
 
 // Divider Styles
