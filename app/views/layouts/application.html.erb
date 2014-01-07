@@ -68,6 +68,12 @@
                   <ul class="dropdown">
                     <li class="<%= controller.class == NewsController ? 'active' : ''%>"><%= link_to "News", verbindung_news_index_path(current_user.verbindung, :page => 1) %> </li>
                     <li class="<%= controller.class == EventsController ? 'active' : ''%>"><%= link_to "Anlässe", verbindung_events_path(current_user.verbindung) %></li>
+                    <li class="has-dropdown"><a href="#">Kommers</a>
+                      <ul class="dropdown">
+                        <li><%= link_to "Bieruhr", "/bieruhr" %> </li>
+
+                      </ul>
+                    </li>
                   </ul>
                 </li>
 
