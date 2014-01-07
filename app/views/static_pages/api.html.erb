@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="collumns small-12">
+      <h1>Iuvenes API</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="collumns small-12">
+      <h2>JSON Api</h2>
+      <p>
+      Iuvenes offers a very basic api for communication with 3rd Party applications and of course for the Iuvenes Apps! There
+      is currently a RESTful Json api. There are no plans for additional interfaces.
+      </p>
+      <h3>Routes</h3>
+    <p>
+      Basically you can use any route there is on the web interface, add a ".json" at the end and have the according json representation of that
+      resource. For example use /users.json to get a list of all users you have access to. Notice that if you are not an admin or the root
+      this will give you a 401 as you don't have access to any list of users. Additionally you have the following routes:
+    </p>
+        <dl>
+          <dt> /verbindung.json</dt>
+          <dd> Gives you the currently logged in user's verbindung</dd>
+          <dt> /events.json</dt>
+          <dd> Gives you the events of the currently logged in user's verbindung</dd>
+          <dt> /news.json[?page=$int]</dt>
+          <dd> Gives you the news of the currently logged in user's verbindung</dd>
+          <dt> /kants.json[?page=$int]</dt>
+          <dd> Gives you the kants of the currently logged in user's verbindung</dd>
+          <dt> /biercomments.json[?page=$int]</dt>
+          <dd> Gives you the biercomments of the currently logged in user's verbindung</dd>
+          <dt> /paragraphs.json[?page=$int]</dt>
+          <dd> Gives you the statuten of the currently logged in user's verbindung</dd>
+          <dt> /profile.json</dt>
+          <dd> Gives you the data of the user currently logged in</dd>
+          <dt> /logo[?size={medium, small, xsmall}]</dt>
+          <dd> Gives you the logo of the currently logged in user's verbingung</dd>
+        </dl>
+    <h3>Add a device for push notifications:</h3>
+    <dl>
+      <dt>POST on /users/:user_id/addPushNotification.json</dt>
+      <dd>the server will send push notifications to the users device (only android and ios are supported). The user needs to be logged in. The POST params that are used (* required):
+        <ul>
+          <li>*push_notification[device_os] is an element of {"ios", "android"}</li>
+          <li>*push_notification[device_id] the id that the ios/android id of the application of the device</li>
+          <li>*push_notification[device_name] a name for this device</li>
+          <li>push_notification[device_description] a description for this device</li>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+</div>
+

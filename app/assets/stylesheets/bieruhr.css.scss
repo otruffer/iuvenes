@@ -1,0 +1,53 @@
+div#page2{
+  //display: none;
+}
+
+div.bieruhrcontainer{
+  position: relative;
+  width:100%;
+}
+div.thriller {
+   background-image:  image-url("thriller.png");
+  height: 300px;
+  width: 300px;
+  left: 50%;
+  margin: 10px;
+  background-size: 300px 300px;
+}
+
+div.bieruhr_rahmen{
+  background-color: beige;
+  border: 1px solid black;
+  margin-left: -160px;
+  width: 320px;
+  height: 320px;
+}
+
+div.page {
+  width: 100%;
+  margin: 10px;
+  position:relative;
+  margin-bottom: 40px;
+}
+
+div#page1 {
+  margin-left: 50%;
+}
+
+#result {
+  margin-top: 10px;
+  font-size: 25pt;
+  width: 100%;
+  text-align: center;
+
+}
+
+div.bolzen {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  margin-top: 5px;
+  left:149;
+  z-index: 20;
+  background-color: gray;
+}
