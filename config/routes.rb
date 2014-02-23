@@ -56,6 +56,7 @@ Iuvenes::Application.routes.draw do
   match '/profile' => 'route#profile'
   match '/kants' => 'route#kants'
   match '/api' => 'route#api'
+  match '/logo' => 'route#logo'
   match '/biercomments' => 'route#biercomments'
   match '/statuts' => 'route#statuts'
   match '/statuten' => 'route#statuten'

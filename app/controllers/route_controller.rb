@@ -94,6 +94,23 @@ class RouteController < ApplicationController
     end
   end
 
+  # GET /logo
+  def logo
+    size = params[:size]
+    if size.nil? or size == 'xsmall'
+      size = :xsmall
+    elsif size == 'small'
+      size = :small
+    elsif size == 'medium'
+      size = :medium
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
+
+    redirect_to current_user.verbindung.logo.url(size)
+  end
+
+
   def api
     respond_to do |format|
       format.html { render :template => 'static_pages/api.html.erb' }
